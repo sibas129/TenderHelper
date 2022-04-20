@@ -5,7 +5,6 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from core import analyzer
-from core.analyzer import result
 import pandas as pd
 import numpy as np
 from sklearn import linear_model
@@ -85,15 +84,44 @@ class PredictionFrame(QWidget):
             return
         if self.lineEdit.text():
             int_lst1 = self.refactor(self.lineEdit.text())
-            self.company_name.setText(str(int_lst1[1]))
+            winrate1 = analyzer.result(int_lst1[0], int_lst1[1], int_lst1[2], int_lst1[3])
+        else:
+            winrate1 = -10000
 
         if self.lineEdit_2.text():
             int_lst2 = self.refactor(self.lineEdit_2.text())
+            winrate2 = analyzer.result(int_lst2[0], int_lst2[1], int_lst2[2], int_lst2[3])
+        else:
+            winrate2 = -10000
 
         if self.lineEdit_3.text():
-            int_lst3 = self.refactor(self.lineEdit.text())
+            int_lst3 = self.refactor(self.lineEdit_3.text())
+            winrate3 = analyzer.result(int_lst3[0], int_lst3[1], int_lst3[2], int_lst3[3])
+        else:
+            winrate3 = -10000
 
-    
+        max_winrate = max([winrate1, winrate2, winrate3])
+
+        if(winrate1 == max_winrate):
+            str = self.lineEdit.text()
+            i = str.find(',')
+            self.company_name.setText(str[:i])
+            print(max_winrate)
+            return
+
+        if (winrate2 == max_winrate):
+            str = self.lineEdit_2.text()
+            i = str.find(',')
+            self.company_name.setText(str[:i])
+            print(max_winrate)
+            return
+
+        if (winrate3 == max_winrate):
+            str = self.lineEdit_3.text()
+            i = str.find(',')
+            self.company_name.setText(str[:i])
+            print(max_winrate)
+            return
 
 
     # def save(self):

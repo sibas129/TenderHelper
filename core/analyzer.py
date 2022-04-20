@@ -21,5 +21,5 @@ print(reg.intercept_)
 print(results.pvalues)
 
 
-def result(int):
-    return reg.predict([[200, 10, 8, 8]])
+def result(num1, num2, num3, num4):
+    return reg.predict([[num1, num2, num3, num4]])
