@@ -1,8 +1,8 @@
-name;num_of_tenders;trading_volume;mean_trading_volume;num_terminated_contract;num_traids_with_not_least_price;trades_with_fines;winner_dicline_more_25;num_of_customers;winrate
-HSE;99;955;9;5;42;12;26;64;43
-MGUA;54;363;7;2;18;4;30;20;67
-REU;142;1385;10;22;98;16;48;53;61
-MGU;51;560;11;4;18;9;17;30;59
-FinUniversity;59;569;9;8;35;7;15;37;51
-VGU;70;766;11;5;47;11;12;37;40
-PresidentUniversity;404;858;2;5;34;10;22;253;9
+name,num_of_tenders,trading_volume,mean_trading_volume,terminated_contract,traids_with_not_least_price,trades_with_fines,winner_dicline_more_25,num_of_customers,winrate
+HSE,99,955,9,5,42,12,26,64,90
+MGUA,54,363,7,2,18,4,30,20,70
+REU,142,1385,10,22,98,16,48,53,60
+MGU,51,560,11,4,18,9,17,30,44
+FinUniversity,59,569,9,8,35,7,15,37,30
+VGU,70,766,11,5,47,11,12,37,80
+PresidentUniversity,404,858,2,5,34,10,22,253,50

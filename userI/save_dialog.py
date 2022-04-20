@@ -1,42 +1,46 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QLineEdit
 
 
-class Ui_save_dialog(object):
-    def setupUi(self, save_dialog):
-        save_dialog.setObjectName("save_dialog")
-        save_dialog.resize(400, 170)
-        self.frame = QtWidgets.QWidget(save_dialog)
-        self.frame.setObjectName("frame")
-        self.name = QtWidgets.QLineEdit(self.frame)
-        self.name.setGeometry(QtCore.QRect(10, 30, 380, 40))
-        self.name.setObjectName("name")
-        self.ok_btn = QtWidgets.QPushButton(self.frame)
-        self.ok_btn.setGeometry(QtCore.QRect(10, 90, 185, 40))
-        self.ok_btn.setObjectName("ok_btn")
-        self.close_btn = QtWidgets.QPushButton(self.frame)
-        self.close_btn.setGeometry(QtCore.QRect(205, 90, 185, 40))
-        self.close_btn.setObjectName("close_btn")
-        save_dialog.setCentralWidget(self.frame)
-        self.statusbar = QtWidgets.QStatusBar(save_dialog)
-        self.statusbar.setObjectName("statusbar")
-        save_dialog.setStatusBar(self.statusbar)
+class DialogClass(QtWidgets.QDialog):
+    def __init__(self):
+        super().__init__()
 
-        self.retranslateUi(save_dialog)
-        QtCore.QMetaObject.connectSlotsByName(save_dialog)
+        self.name = QLineEdit("", self)
+        self.name.move(20, 10)
+        font = QFont()
+        font.setPointSize(8)
+        self.name.setPlaceholderText("Введите название сохранения")
+        self.name.resize(210, 20)
+        self.name.setFont(font)
 
-    def retranslateUi(self, save_dialog):
-        _translate = QtCore.QCoreApplication.translate
-        save_dialog.setWindowTitle(_translate("save_dialog", "Сохранение"))
-        self.name.setText(_translate("save_dialog", "введите название сохранения"))
-        self.ok_btn.setText(_translate("save_dialog", "Сохранить"))
-        self.close_btn.setText(_translate("save_dialog", "Закрыть"))
+        self.textbox_errors = QLineEdit("", self)
+        self.textbox_errors.setReadOnly(True)
+        self.textbox_errors.move(20, 40)
+        self.textbox_errors.setFrame(False)
+        font = QFont()
+        font.setPointSize(10)
+        self.textbox_errors.setFont(font)
+        self.textbox_errors.setMinimumSize(15, 15)
+        self.textbox_errors.setMaximumSize(300, 20)
+        self.textbox_errors.resize(300, 20)
+
+        self.ok_btn = QtWidgets.QPushButton(self)
+        #self.ok_btn.clicked.connect(self.save)
+        self.ok_btn.move(20, 70)
+        self.close_btn = QtWidgets.QPushButton(self)
+        self.close_btn.clicked.connect(self.close)
+        self.close_btn.move(155, 70)
+        self.ok_btn.setText("Сохранить")
+        self.close_btn.setText("Закрыть")
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     save_dialog = QtWidgets.QMainWindow()
-#     ui = Ui_save_dialog()
-#     ui.setupUi(save_dialog)
-#     save_dialog.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    save_dialog = QtWidgets.QMainWindow()
+    ui = DialogClass()
+    ui.setupUi(save_dialog)
+    save_dialog.show()
+    sys.exit(app.exec_())
